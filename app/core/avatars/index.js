@@ -31,9 +31,7 @@ function AvatarManager(options) {
 
 }
 
-AvatarManager.prototype.add = function(query, cb) {
-
-    cb();
+AvatarManager.prototype.add = function(user) {
 
 };
 
