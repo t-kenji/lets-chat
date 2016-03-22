@@ -75,3 +75,6 @@ rooms:
 
 i18n:
   locale: en
+
+notifications:
+  mentionedOnly: true
