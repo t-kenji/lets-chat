@@ -86,6 +86,10 @@ var UserSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
+    notificationsMentionedOnly: {
+        type: Boolean,
+        default: false
+    },
     rooms: [{
 		type: ObjectId,
 		ref: 'Room' 
@@ -280,6 +284,7 @@ UserSchema.method('toJSON', function() {
         displayName: this.displayName,
         avatar: this.avatar,
         openRooms: this.openRooms,
+        notificationsMentionedOnly: this.notificationsMentionedOnly
     };
 });
 

@@ -167,7 +167,8 @@
 
     window.LCB.NotificationsModalView = Backbone.View.extend({
         events: {
-            'click [name=desktop-notifications]': 'toggleDesktopNotifications'
+            'click [name=desktop-notifications]': 'toggleDesktopNotifications',
+            'click [name=notifications-mentionedonly]': 'toggleNotificationsMentionedOnly'
         },
         initialize: function() {
             this.render();
@@ -178,17 +179,31 @@
               .siblings().hide();
             if (!notify.isSupported) {
                 $input.attr('disabled', true);
-                // Welp we're done here
-                return;
             }
-            if (notify.permissionLevel() === notify.PERMISSION_GRANTED) {
+            else if (notify.permissionLevel() === notify.PERMISSION_GRANTED) {
                 $input.find('.enabled').show()
                   .siblings().hide();
             }
-            if (notify.permissionLevel() === notify.PERMISSION_DENIED) {
+            else if (notify.permissionLevel() === notify.PERMISSION_DENIED) {
                 $input.find('.blocked').show()
                   .siblings().hide();
             }
+
+            var $input = this.$('[name=notifications-mentionedonly]');
+            $input.find('.disabled').show()
+              .siblings().hide();
+            $.get('./notifications', function(data) {
+                if (data.status == 'error') {
+                    $input.find('.disabled').show()
+                      .siblings().hide();
+                    return;
+                }
+
+                if (data.mentionedOnly) {
+                    $input.find('.enabled').show()
+                      .siblings().hide();
+                }
+            });
         },
         toggleDesktopNotifications: function() {
             var that = this;
@@ -196,6 +211,18 @@
                 return;
             }
             notify.requestPermission(function() {
+                that.render();
+            });
+        },
+        toggleNotificationsMentionedOnly: function() {
+            var that = this;
+            if (!notify.isSupported) {
+                return;
+            }
+            $.post('./notifications/mentionedOnly', function(data) {
+                if (data.status == 'error') {
+                    return;
+                }
                 that.render();
             });
         }

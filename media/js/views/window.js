@@ -168,16 +168,26 @@
             notify.config({
                 pageVisibility: false
             });
+            var that = this;
             this.client = options.client;
             this.rooms = options.rooms;
+            this.user = options.client.user;
             $(window).on('focus blur unload', _.bind(this.onFocusBlur, this));
+            this.user.on('change', this.update, this);
             this.rooms.on('messages:new', this.onNewMessage, this);
+
+            $.get('./notifications', function(data) {
+                that.notificationsMentionedOnly = data.mentionedOnly;
+            });
         },
         onFocusBlur: function(e) {
             this.focus = (e.type === 'focus');
             _.each(_.merge(this.openNotifications, this.openMentions), function(notification) {
                 notification.close && notification.close();
             });
+        },
+        update: function(user) {
+            this.notificationsMentionedOnly = user.get('notificationsMentionedOnly');
         },
         onNewMessage: function(message) {
             if (this.focus || message.historical || message.owner.id === this.client.user.id) {
@@ -191,6 +201,10 @@
 
             if (!notify.isSupported ||
                 notify.permissionLevel() != notify.PERMISSION_GRANTED) {
+                return;
+            }
+            if ( !message.mentioned &&
+                this.notificationsMentionedOnly) {
                 return;
             }
 

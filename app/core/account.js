@@ -39,6 +39,9 @@ AccountManager.prototype.update = function(id, options, cb) {
         if (options.email) {
             user.email = options.email;
         }
+        if (options.hasOwnProperty('notificationsMentionedOnly')) {
+            user.notificationsMentionedOnly = options.notificationsMentionedOnly;
+        }
 
         if (options.openRooms) {
           user.openRooms = options.openRooms;
