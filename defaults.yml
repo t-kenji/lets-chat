@@ -78,3 +78,6 @@ i18n:
 
 avatars:
   providers: [gravatar, initials]
+
+notifications:
+  mentionedOnly: true
