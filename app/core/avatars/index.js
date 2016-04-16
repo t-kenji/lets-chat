@@ -31,6 +31,10 @@ function AvatarManager(options) {
 
 }
 
+AvatarManager.prototype.get = function(userId) {
+
+};
+
 AvatarManager.prototype.add = function(user) {
 
 };
