@@ -76,8 +76,5 @@ rooms:
 i18n:
   locale: en
 
-avatars:
-  providers: [gravatar, initials]
-
 notifications:
   mentionedOnly: true
