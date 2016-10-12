@@ -55,8 +55,8 @@ module.exports = MessageProcessor.extend({
         var avatar = this.core.avatars.get(userId);
         if (avatar) {
             var photo = vcard.c('PHOTO');
-            photo.c('TYPE').t('image/svg+xml');
-            photo.c('BINVAL').t(avatar.svg);
+            photo.c('TYPE').t('image/jpeg');
+            photo.c('BINVAL').t(avatar.base64);
         }
 
         cb(null, stanza);
