@@ -17,7 +17,7 @@ AvatarCache.prototype.get = function(userId) {
 
 AvatarCache.prototype.add = function(user) {
     var userId = (user.id || user._id).toString();
-    var url = 'http://www.gravatar.com/avatar/' + user.avatar + '?s=64';
+    var url = user.avatar_uri + '/' + user.avatar + '?s=64';
 
     http.get(url, function(response) {
         if (response.statusCode !== 200) {

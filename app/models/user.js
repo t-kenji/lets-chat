@@ -115,6 +115,10 @@ UserSchema.virtual('local').get(function() {
     return this.provider === 'local';
 });
 
+UserSchema.virtual('avatar_uri').get(function() {
+    return settings.avatar.uri;
+});
+
 UserSchema.virtual('avatar').get(function() {
     if (!this.email) {
       return null;
@@ -282,6 +286,7 @@ UserSchema.method('toJSON', function() {
         lastName: this.lastName,
         username: this.username,
         displayName: this.displayName,
+        avatar_uri: this.avatar_uri,
         avatar: this.avatar,
         openRooms: this.openRooms,
         notificationsMentionedOnly: this.notificationsMentionedOnly

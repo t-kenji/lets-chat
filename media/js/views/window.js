@@ -209,8 +209,9 @@
             }
 
             var roomID = message.room.id,
+                avatar_uri = message.owner.avatar_uri,
                 avatar = message.owner.avatar,
-                icon = 'https://www.gravatar.com/avatar/' + avatar + '?s=50',
+                icon = avatar_uri + '/' + avatar + '?s=50',
                 title = message.owner.displayName + ' in ' + message.room.name,
                 mention = message.mentioned;
 

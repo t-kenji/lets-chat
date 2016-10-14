@@ -40,7 +40,8 @@ module.exports = function() {
         }).sample().value();
         res.render('login.html', {
             photo: image,
-            auth: auth.providers
+            auth: auth.providers,
+            avatar_uri: settings.avatar.uri
         });
     });
 
