@@ -130,7 +130,7 @@
             }
             var options = {
                 at: '@',
-                tpl: '<li data-value="@${username}"><img src="https://www.gravatar.com/avatar/${avatar}?s=20" height="20" width="20" /> @${username} <small>${displayName}</small></li>',
+                tpl: '<li data-value="@${username}"><img src="${avatar_uri}/${avatar}?s=20" height="20" width="20" /> @${username} <small>${displayName}</small></li>',
                 callbacks: {
                     filter: this.getAtwhoUserFilter(this.model.users),
                     sorter: sorter,
@@ -157,7 +157,7 @@
 
             var options = {
                 at: '@@',
-                tpl: '<li data-value="@${username}"><img src="https://www.gravatar.com/avatar/${avatar}?s=20" height="20" width="20" /> @${username} <small>${displayName}</small></li>',
+                tpl: '<li data-value="@${username}"><img src="${avatar_uri}/${avatar}?s=20" height="20" width="20" /> @${username} <small>${displayName}</small></li>',
                 callbacks: {
                     filter: filter,
                     sorter: sorter,
