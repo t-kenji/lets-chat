@@ -28,6 +28,14 @@ function getMiddleware(fail) {
                     auth = passport.authenticate('basic', { session: false });
                     return auth(req, res, next);
                 }
+            } else if (parts.length === 10) {
+                var scheme = parts[0],
+                    auth;
+
+                if (/^Digest$/i.test(scheme)) {
+                    auth = passport.authenticate('reverseproxy');
+                    return auth(req, res, next);
+                }
             }
         }
 

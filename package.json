@@ -74,6 +74,7 @@
     "i18n": "^0.8.3",
     "js-yaml": "^3.6.1",
     "less": "^2.7.1",
+    "lets-chat-reverseproxy": "git+https://github.com/t-kenji/lets-chat-reverseproxy.git",
     "lodash": "^4.13.1",
     "md5": "^2.1.0",
     "moment": "^2.14.1",
